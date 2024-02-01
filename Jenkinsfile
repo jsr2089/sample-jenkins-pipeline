@@ -19,9 +19,9 @@ pipeline {
         }
     }
      post {
-        failure {
-        mail to: 'team@example.com',
-             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.BUILD_URL}"
+        always {
+        mail to: 'jsr2089@gmail.com',
+             subject: "Status: ${currentBuild.fullDisplayName}",
+             body: "Test ${env.BUILD_URL}"
         }
     }

@@ -25,3 +25,4 @@ pipeline {
              body: "Test ${env.BUILD_URL}"
         }
     }
+}

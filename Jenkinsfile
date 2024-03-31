@@ -1,25 +1,23 @@
+//Jenkinsfile (Declarative Pipeline)
 pipeline {
-    agent any
-    
-    environment {
-        ACR_REGISTRY = "myregistry123did.azurecr.io"
-    }
-    
+    agent any 
     stages {
-        stage('Build and Push Docker Image') {
+        stage('Build') { 
             steps {
-                script {
-                    // Log into ACR registry
-                        sh "az login"
-                        sh az acr login $ACR_REGISTRY                       
-                    }
-
-                    // Build Docker image
-                    sh "docker build -t $ACR_REGISTRY/your-image-name:latest ."
-
-                    // Push Docker image
-                    sh "docker push $ACR_REGISTRY/your-image-name:latest"
-                }
+                echo 'Starting the build Stage'
+                echo 'Build Stage completed successfully'
+            }
+        }
+        stage('Test') { 
+            steps {
+                echo 'Starting the Test Stage'
+                echo 'Test Stage completed successfully'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                echo 'Starting the Deploy Stage'
+                echo 'Deploy Stage completed successfully'
             }
         }
     }

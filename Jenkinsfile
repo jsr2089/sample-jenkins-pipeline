@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                       sh "docker -t build Dockerfile ."
+                       sh "docker -t -f build Dockerfile ."
 
                     // Push Docker image
                     // sh "docker push $ACR_REGISTRY/your-image-name:latest"

@@ -1,10 +1,25 @@
-/* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { docker { image 'maven:3.9.6-eclipse-temurin-17-alpine' } }
+    agent any
+    
+    environment {
+        ACR_REGISTRY = "myregistry123did.azurecr.io"
+    }
+    
     stages {
-        stage('build') {
+        stage('Build and Push Docker Image') {
             steps {
-                sh 'mvn --version'
+                script {
+                    // Log into ACR registry
+                        sh "az login"
+                        sh az acr login $ACR_REGISTRY                       
+                    }
+
+                    // Build Docker image
+                    sh "docker build -t $ACR_REGISTRY/your-image-name:latest ."
+
+                    // Push Docker image
+                    sh "docker push $ACR_REGISTRY/your-image-name:latest"
+                }
             }
         }
     }
